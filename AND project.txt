@@ -1,0 +1,28 @@
+# Load required libraries
+library(dplyr)
+library(lubridate)
+
+# Set the seed for reproducibility
+set.seed(123)
+
+# Generate synthetic car rental data
+n <- 365  # Number of days of data
+dates <- seq(as.Date("2023-01-01"), by = "days", length.out = n)
+car_types <- c("Sedan", "SUV", "Convertible")
+locations <- c("LocationA", "LocationB", "LocationC")
+rental_counts <- sample(10:100, n, replace = TRUE)
+
+# Create a data frame
+car_rental_data <- data.frame(
+  rental_date = dates,
+  rental_duration = sample(1:7, n, replace = TRUE),
+  car_type = sample(car_types, n, replace = TRUE),
+  location = sample(locations, n, replace = TRUE),
+  rental_count = rental_counts
+)
+
+# Save the data to a CSV file
+write.csv(car_rental_data, "car_rental_data.csv", row.names = FALSE)
+
+# Display a sample of the generated data
+head(car_rental_data)
